@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { GET_POSTS } from '../util/api';
 
 export default function Home() {
-  const { data, loading, error, fetchMore } = useQuery(GET_POSTS, {
+  const { data, loading, error } = useQuery(GET_POSTS, {
     variables: { first: 6, after: null },
     notifyOnNetworkStatusChange: true,
   });
@@ -22,7 +22,6 @@ export default function Home() {
   }
 
   const posts = data.posts.edges.map((edge) => edge.node);
-  const haveMorePosts = Boolean(data?.posts?.pageInfo?.hasNextPage);
 
   return (
     <>
